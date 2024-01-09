@@ -1,42 +1,23 @@
 const connection = require('../server');
 const bcrypt = require('bcrypt');
-const salt = bcrypt.genSaltSync(10);
-
-function CallError(){
-  const error = {
-    message:'Erro ao fazer a requisição'
-  }
-  return error
-}
-
-function CallSolved(){
-  const data = {
-    message:'Requisição feita com sucessdo!'
-  }
-  return data
-}
-
 
 async function CreateUserServices(nome,email,senha){
-    const hashSenha = bcrypt.hashSync(senha,salt);
-    let insertSql = `INSERT INTO register (nome,email,senha) VALUES (?,?,?)`
-    const values = () =>{ 
-     
-      connection.query(insertSql, [nome, email, hashSenha],  (err, result) => {
-       if(result){ 
-          // console.log(result)
-          return result; 
-        }else{
-          // console.log(err)
-          return err
-        }
-      });
-     }
+  const mysql = require('mysql2/promise');
+  try{
+    const salt = await bcrypt.genSalt(10);
+    const hashSenha = await bcrypt.hash(senha, salt);
     
+    let insertSql = `INSERT INTO register (nome,email,senha) VALUES ('${nome}','${email}','${hashSenha}')`;
+    const [results, fields] = await connection.query(insertSql);
 
-     return values()
+    return results;
+  }catch(err){
+    // console.log(err)
+    return err
+  }
    
-    
+
+   
 }
 
 module.exports = CreateUserServices;

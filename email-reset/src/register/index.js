@@ -27,28 +27,10 @@ function Register() {
       body:JSON.stringify(data),
       mode: "cors"
     })
-    .then(response => {
-      console.log(response)
-      response.json()
-    })
-    .then((data) =>{
-      console.log(data)
-      toast('Usuário cadastrado com sucesso!', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-        theme: "dark",
-        type:"success"
-        })
-    })
-    .catch(error =>{
-      
-      console.log(error)
-      toast('E-mail já cadastrado!', {
+    .then(response => response.json())
+    .then(data =>{
+      if(data.message == "Email já cadastrado"){
+          toast('E-mail já cadastrado!', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -59,6 +41,26 @@ function Register() {
         theme: "dark",
         type:"warning"
       })
+      }
+      if(data.message == "Usuário cadastrado com sucesso!"){
+        toast('Usuário cadastrado com sucesso!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "dark",
+          type:"success"
+        })
+      }
+      
+    })
+    .catch((error) =>{
+      
+      console.log(error)
+    
     });
 
   }
