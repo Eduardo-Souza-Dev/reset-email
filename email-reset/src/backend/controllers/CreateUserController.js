@@ -1,4 +1,5 @@
 const CreateUserServices = require('../services/CreateUserServices');
+const connection = require('../server');
 
 
 async function CreateUserController(request,response){
@@ -8,11 +9,11 @@ async function CreateUserController(request,response){
     let values =  await CreateUserServices(nome,email,senha);
     console.log( values)
 
-    // if(values.code == "ER_DUP_ENTRY"){
-    //     return response.status(400).json({message: 'Email já cadastrado'})
-    // }else{
-    //     return response.status(200).json({success: 'Usuário cadastrado com sucesso!'});
-    // }
+    if(values.code == "ER_DUP_ENTRY"){
+         response.status(400).json({message: 'Email já cadastrado'})
+    }else{
+         response.status(200).json({success: 'Usuário cadastrado com sucesso!'});
+    }
 
 }
 
