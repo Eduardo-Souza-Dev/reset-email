@@ -17,7 +17,6 @@ function Register() {
     senha: senha,
   }
 
-  let dataJSON = JSON.stringify(data)
 
    function sendInfo(e){
     e.preventDefault()
@@ -29,19 +28,7 @@ function Register() {
     })
     .then(response => response.json())
     .then(data =>{
-      if(data.message == "Email já cadastrado"){
-          toast('E-mail já cadastrado!', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-        theme: "dark",
-        type:"warning"
-      })
-      }
+      console.log(data)
       if(data.message == "Usuário cadastrado com sucesso!"){
         toast('Usuário cadastrado com sucesso!', {
           position: "top-right",
@@ -55,11 +42,24 @@ function Register() {
           type:"success"
         })
       }
-      
+
+      if(data.message == "Email já cadastrado"){    
+        toast('E-mail já cadastrado!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "dark",
+          type:"warning"
+        })
+      }
     })
     .catch((error) =>{
-      
-      console.log(error)
+      console.log("Aqui o erro " + error)
+ 
     
     });
 

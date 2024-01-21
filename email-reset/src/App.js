@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Home from './home';
 import Login from './login';
 import Register from './register';
+import ResetPage from './login/resetPage';
 
 
 
@@ -31,6 +32,7 @@ function App() {
         <Route index path="/" element={<Home />}/>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="reset-password" element={<ResetPage />} />
       </Routes>
     </BrowserRouter>
 

@@ -11,25 +11,16 @@ async function CreateVerifyServicesEmail(email){
 
     let verificaEmail = `SELECT * FROM register WHERE email = '${email}'` 
     connection.query(verificaEmail, (err, results)=>{
-      if(results){
+      if(results[0] !== null){
         //Faz o timeout para expirar o código de reset e consequentemente deixar vazio
-       
-        if(results[0].codigo_reset === null){
-          console.log("Aqui foi")
-          insertCodigo(results[0].id_register, email)
-        }
-        else{
-          console.log("Aqui foi no outro if")
-        }
+          insertCodigo(results[0].id_register, email);
       }else{
-       
-        console.log("Not results found")
-       
+        console.log("Email not found!");
       }
         
-    }).on('error', function(err){
-      console.log(err)
-    })
+    })//.on('error', function(err){
+      //console.log(err);
+    //})
 
 
 }

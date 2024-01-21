@@ -2,7 +2,7 @@ import { useState,useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { Link } from "react-router-dom";
 
 function Login() {
 //   let [values, setValues] = useState('')
@@ -34,13 +34,19 @@ function Login() {
 
         <Form.Group style={{color:'white', fontSize:20 + 'px', textAlign:'end'}} className="mb-3" controlId="formBasicCheckbox">
           <Form.Text style={{color:'white', fontSize:20 + 'px'}}>
-            Esqueceu a senha? <a href="#"id='link_reset'>Resetar</a>
+            Esqueceu a senha? 
+            <Link to={"/reset-password"}>
+                        Resetar
+            </Link>
           </Form.Text>
         </Form.Group>
 
         <Form.Group style={{color:'white', fontSize:20 + 'px', textAlign:'start'}} className="mb-3" controlId="formBasicCheckbox">
           <Form.Text style={{color:'white', fontSize:20 + 'px'}}>
-            Não possui usuário? <a href="#"id='link_reset'>Registrar</a>
+            Não possui usuário? 
+            <Link to={"/register"}>
+                        Registrar
+            </Link>
           </Form.Text>
         </Form.Group>
 
