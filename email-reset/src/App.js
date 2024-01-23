@@ -4,10 +4,13 @@ import { useState,useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
+//pages
 import Home from './home';
 import Login from './login';
 import Register from './register';
-import ResetPage from './login/resetPage';
+import ResetPage from './login/cod_page';
+import EmailPage from './login/email_page';
 
 
 
@@ -32,7 +35,8 @@ function App() {
         <Route index path="/" element={<Home />}/>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-          <Route path="reset-password" element={<ResetPage />} />
+          <Route path="cod-page" element={<ResetPage />} />
+          <Route path="email-reset-password" element={<EmailPage />} />
       </Routes>
     </BrowserRouter>
 

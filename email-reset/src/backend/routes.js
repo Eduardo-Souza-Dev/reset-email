@@ -12,7 +12,7 @@ app.post('/create/user',async (req, res)=>{
   await CreateUserController(req,res)
 })
 
-app.get('/verify/:email', async (req, res) =>{
+app.post('/verify/:email', async (req, res) =>{
   await ControllerVerifyEmail(req.params.email, res);
 })
   

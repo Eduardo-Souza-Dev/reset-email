@@ -35,8 +35,8 @@ function Login() {
         <Form.Group style={{color:'white', fontSize:20 + 'px', textAlign:'end'}} className="mb-3" controlId="formBasicCheckbox">
           <Form.Text style={{color:'white', fontSize:20 + 'px'}}>
             Esqueceu a senha? 
-            <Link to={"/reset-password"}>
-                        Resetar
+            <Link to={"/email-reset-password"}>
+                        Resetar a senha
             </Link>
           </Form.Text>
         </Form.Group>
