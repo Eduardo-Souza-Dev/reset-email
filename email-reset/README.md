@@ -1,4 +1,4 @@
-# Serviço de Reenvio de Email para Autenticação de Usuários
+# Serviço de Reenvio de Email para Reset de senha de Usuários
 
 ## Visão Geral
 
