@@ -12,18 +12,18 @@ function EmailPage(){
     const [ email, setEmail ] = useState('');
 
 
-    async function VerifyEmail(e){
-        e.preventDefault()
-        fetch(`http://localhost:3333/verify/${email}`,{
-          method:"POST",
-          body:JSON.stringify(email),
-          headers: {"Content-type": "application/json; charset=UTF-8"},
-          mode: "cors"
-        })
-        .then(response => response.json())
-        .then(data =>{
-          console.log(data)
-            toast('Código enviado ao seu e-mail!', {
+    async function VerifyEmail(e) {
+      e.preventDefault();
+      fetch(`http://localhost:3333/verify/${email}`, {
+          method: "POST",
+          body: JSON.stringify(email),
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+          mode: "no-cors",
+      })
+      .then(response => response.json())
+      .then(data => {
+          console.log(data);
+          toast('Código enviado ao seu e-mail!', {
               position: "top-right",
               autoClose: 5000,
               hideProgressBar: false,
@@ -32,29 +32,25 @@ function EmailPage(){
               draggable: false,
               progress: undefined,
               theme: "dark",
-              type:"success"
-            })
-       
-            // window.location = <ResetPage/>
-          
-        })
-        .catch((error) =>{ 
-                toast('Erro ao enviar código', {
-                  position: "top-right",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: false,
-                  progress: undefined,
-                  theme: "dark",
-                  type:"warning"
-                })
-          console.log( error)
-     
-        
-        });
-    }
+              type: "success"
+          });
+          // window.location = <ResetPage/>
+      })
+      .catch((error) => { 
+          toast('Erro ao enviar código', {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: false,
+              progress: undefined,
+              theme: "dark",
+              type: "warning"
+          });
+          console.log(error);
+      });
+  }
 
     return (
 

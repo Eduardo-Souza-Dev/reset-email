@@ -9,7 +9,7 @@ app.use(cors())
 
 
 app.post('/create/user',async (req, res)=>{
-  await CreateUserController(req,res)
+  await CreateUserController(req,res);
 })
 
 app.post('/verify/:email', async (req, res) =>{

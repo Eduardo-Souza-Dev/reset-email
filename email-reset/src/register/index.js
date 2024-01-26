@@ -58,9 +58,17 @@ function Register() {
       }
     })
     .catch((error) =>{
-      console.log("Aqui o erro " + error)
- 
-    
+      toast('Erro ao cadastrar!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "dark",
+        type:"warning"
+      })
     });
 
   }
