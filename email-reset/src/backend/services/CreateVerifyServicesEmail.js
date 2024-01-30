@@ -2,7 +2,10 @@ const connection = require('../server');
 const bcrypt = require('bcrypt');
 const salt = bcrypt.genSaltSync(10);
 const { Resend } = require("resend");
+require('dotenv').config()
+let KEY = process.env.TZ;
 
+console.log("Valor do process " + KEY)
 
 function ResetCode(id){
   //Define o código como NULL a medida em que o tempo é expirado
@@ -19,27 +22,27 @@ function ResetCode(id){
 }
 
 async function CreateVerifyServicesEmail(email){
-    
+    try{
     if(!email){
-        throw new Error("E-mail incorreto")
+        throw new Error("E-mail incorreto");
     }
 
     let verificaEmail = `SELECT * FROM r_user_register WHERE email = '${email}'` 
-    connection.query(verificaEmail, (err, results)=>{
-      console.log(results)
-      if(results !== ""){
-        //Faz o timeout para expirar o código de reset e consequentemente deixar vazio
-          insertCodigo(results[0].id_user_register,results[0].email);
-          setTimeout(() =>{
-            ResetCode(results[0].id_user_register)
-          },10000)
-      }else{
-
-        console.log("Email not found!");
-        return;
-      }
-        
-    })
+    const [results, fields] = await connection.promise().query(verificaEmail)
+      //Faz o timeout para expirar o código de reset e consequentemente deixar vazio
+     if(results == ""){
+        return null;
+     }else{
+        insertCodigo(results[0].id_user_register,results[0].email);
+        setTimeout(() =>{
+          ResetCode(results[0].id_user_register)
+        },50000)// 5 minutos e faza o reset do código
+        return results;
+     } 
+      
+  }catch(err){
+    return err;
+  }
 
 
 }
@@ -50,7 +53,7 @@ let i = 0;
 
 //Gerando 4 números aleatórios de 0 a 9
 while(i < 4){
-  let codigoArr = Math.floor(Math.random() * 9 + i)
+  let codigoArr = Math.floor(Math.random() * 9)
   codigo += codigoArr
   i++
 }

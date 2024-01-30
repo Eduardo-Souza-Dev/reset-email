@@ -11,18 +11,21 @@ import 'react-toastify/dist/ReactToastify.css';
 function EmailPage(){
     const [ email, setEmail ] = useState('');
 
+    const data = {
+      email:email
+    }
+    const JSONdata = JSON.stringify(data)
 
-    async function VerifyEmail(e) {
+    async function VerifyEmail(e){
       e.preventDefault();
-      fetch(`http://localhost:3333/verify/${email}`, {
+      fetch(`http://localhost:3333/verify/${data.email}`, {
           method: "POST",
-          body: JSON.stringify(email),
           headers: { "Content-type": "application/json; charset=UTF-8" },
-          mode: "no-cors",
+          mode: "cors",
       })
       .then(response => response.json())
       .then(data => {
-          console.log(data);
+          if(data.message === "Código enviado com sucesso!" ){
           toast('Código enviado ao seu e-mail!', {
               position: "top-right",
               autoClose: 5000,
@@ -34,10 +37,10 @@ function EmailPage(){
               theme: "dark",
               type: "success"
           });
-          // window.location = <ResetPage/>
-      })
-      .catch((error) => { 
-          toast('Erro ao enviar código', {
+        }
+
+          if(data.message === "Erro ao enviar código"){
+            toast('Erro ao enviar código', {
               position: "top-right",
               autoClose: 5000,
               hideProgressBar: false,
@@ -48,6 +51,9 @@ function EmailPage(){
               theme: "dark",
               type: "warning"
           });
+          }
+      })
+      .catch((error) => {  
           console.log(error);
       });
   }
@@ -70,6 +76,7 @@ function EmailPage(){
         <Button onClick={VerifyEmail} variant="primary" type="submit">
           Confirmar
         </Button>
+        <ToastContainer />
       </Form>
   
     );
