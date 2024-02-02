@@ -6,7 +6,7 @@ async function ControllerVerifyEmail(request,response){
     if(values == null){
         return response.status(400).json({message:"Erro ao enviar código"})
     }else{
-        return response.status(200).json({message:"Código enviado com sucesso!"})
+        return response.status(200).json(values)
     }
 
 }

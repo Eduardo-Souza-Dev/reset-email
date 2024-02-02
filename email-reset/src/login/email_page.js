@@ -14,7 +14,6 @@ function EmailPage(){
     const data = {
       email:email
     }
-    const JSONdata = JSON.stringify(data)
 
     async function VerifyEmail(e){
       e.preventDefault();
@@ -25,7 +24,7 @@ function EmailPage(){
       })
       .then(response => response.json())
       .then(data => {
-          if(data.message === "Código enviado com sucesso!" ){
+          if(data && data.message !== "Erro ao enviar código"){
           toast('Código enviado ao seu e-mail!', {
               position: "top-right",
               autoClose: 5000,
@@ -37,6 +36,12 @@ function EmailPage(){
               theme: "dark",
               type: "success"
           });
+
+          setTimeout(() =>{
+          <ResetPage email={data[0].email}/>
+          window.location = 'http://localhost:3000/cod-page'
+          },2000)
+          
         }
 
           if(data.message === "Erro ao enviar código"){
@@ -54,6 +59,17 @@ function EmailPage(){
           }
       })
       .catch((error) => {  
+        toast('Erro ao enviar código', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "dark",
+          type: "warning"
+      });
           console.log(error);
       });
   }
