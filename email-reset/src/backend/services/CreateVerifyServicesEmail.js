@@ -36,7 +36,7 @@ async function CreateVerifyServicesEmail(email){
         insertCodigo(results[0].id_user_register,results[0].email);
         setTimeout(() =>{
           ResetCode(results[0].id_user_register)
-        },50000)// 5 minutos e faz o reset do código
+        },500000)// 5 minutos e faz o reset do código
         return results;
      } 
       
