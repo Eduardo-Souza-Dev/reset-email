@@ -2,11 +2,12 @@ import { useState,useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-
-function ResetPage({email}) {
-  console.log(email)
+function ResetPage() {
+  let value = useLocation();
+  let id_user_register = value.state.id_user_register;
+  console.log("Valor do id do usuário " + id_user_register);
 
   const [ value1, setValue1 ] = useState('');
   const [ value2, setValue2 ] = useState('');
@@ -22,7 +23,7 @@ function ResetPage({email}) {
         <div  class="input-group-prepend">
           <span class="input-group-text" id="basic-addon3">Código</span>
         </div>
-        <input onChange={(e) =>{setValue1(e.target.value)}} style={{textAlign:'center' }} maxLength={1} type="text" class="form-control" aria-describedby="basic-addon1"/>
+        <input onChange={(e) =>{setValue1(e.target.value)}} style={{textAlign:'center' }} maxLength={1} type="text" class="form-control" aria-describedby="basic-addon3"/>
         <input onChange={(e) =>{setValue2(e.target.value)}} style={{textAlign:'center' }} maxLength={1} type="text" class="form-control" aria-describedby="basic-addon3"/>
         <input onChange={(e) =>{setValue3(e.target.value)}} style={{textAlign:'center' }} maxLength={1} type="text" class="form-control" aria-describedby="basic-addon3"/>
         <input onChange={(e) =>{setValue4(e.target.value)}} style={{textAlign:'center' }} maxLength={1} type="text" class="form-control" aria-describedby="basic-addon3"/>

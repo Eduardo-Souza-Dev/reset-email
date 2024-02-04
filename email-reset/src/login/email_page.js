@@ -2,7 +2,7 @@ import { useState,useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ResetPage from './cod_page';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function EmailPage(){
     const [ email, setEmail ] = useState('');
+    const navigate = useNavigate();
 
     const data = {
       email:email
@@ -36,10 +37,11 @@ function EmailPage(){
               theme: "dark",
               type: "success"
           });
+          console.log(data[0].id_user_register)
 
           setTimeout(() =>{
-          <ResetPage email={data[0].email}/>
-          window.location = 'http://localhost:3000/cod-page'
+          navigate('/cod-page',{state: { id_user_register: data[0].id_user_register } })
+          // window.location = 'http://localhost:3000/cod-page'
           },2000)
           
         }

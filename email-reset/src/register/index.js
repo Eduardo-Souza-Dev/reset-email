@@ -28,8 +28,7 @@ function Register() {
     })
     .then(response => response.json())
     .then(data =>{
-      console.log(data)
-      if(data.message == "Usuário cadastrado com sucesso!"){
+       if(data.message == "Usuário cadastrado com sucesso!"){
         toast('Usuário cadastrado com sucesso!', {
           position: "top-right",
           autoClose: 5000,
