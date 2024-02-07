@@ -16,10 +16,9 @@ function ResetPage() {
   const [ value4, setValue4 ] = useState('');
 
   let data = {
-    id_user:id_user_register,
-    cod:`${value1}${value2}${value3}${value4}`
+    id:id_user_register,
+    cod_reset:`${value1}${value2}${value3}${value4}`
   }
-
    function sendInfo(e){
     e.preventDefault()
     fetch(`http://localhost:3333/cod-reset`,{
@@ -30,7 +29,35 @@ function ResetPage() {
     })
     .then(response => response.json())
     .then(data =>{
-      console.log(data)
+      console.log(data.message)
+
+      if(data.message === "Código válido"){
+        toast('Código confirmado!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "dark",
+          type: "success"
+        })
+      }
+
+      if(data.message === "Código inválido"){
+        toast('Código inválido!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "dark",
+          type: "error"
+        })
+      }
     })
     .catch(err =>{
       console.log(err)
@@ -59,6 +86,7 @@ function ResetPage() {
       <Button onClick={sendInfo} variant="primary" type="submit">
         Confirmar
       </Button>
+      <ToastContainer />
     </Form>
 
   );
