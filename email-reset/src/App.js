@@ -11,6 +11,7 @@ import Login from './login';
 import Register from './register';
 import ResetPage from './login/cod_page';
 import EmailPage from './login/email_page';
+import NewPasswordPage from './login/new_password_page';
 
 
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="register" element={<Register />} />
           <Route path="cod-page" element={<ResetPage />} />
           <Route path="email-reset-password" element={<EmailPage />} />
+          <Route path="new-password-page" element={<NewPasswordPage />} />
       </Routes>
     </BrowserRouter>
 

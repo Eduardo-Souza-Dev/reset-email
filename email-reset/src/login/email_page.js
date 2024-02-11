@@ -37,11 +37,8 @@ function EmailPage(){
               theme: "dark",
               type: "success"
           });
-          console.log(data[0].id_user_register)
-
           setTimeout(() =>{
           navigate('/cod-page',{state: { id_user_register: data[0].id_user_register } })
-          // window.location = 'http://localhost:3000/cod-page'
           },2000)
           
         }
