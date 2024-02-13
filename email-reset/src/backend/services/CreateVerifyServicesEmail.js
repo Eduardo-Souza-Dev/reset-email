@@ -5,8 +5,6 @@ const { Resend } = require("resend");
 require('dotenv').config()
 let KEY = process.env.TZ;
 
-console.log("Valor do process " + KEY)
-
 function ResetCode(id){
   //Define o código como NULL a medida em que o tempo é expirado
   let queryInsert = `UPDATE r_user_register SET cod_reset = NULL WHERE id_user_register = ${id} `

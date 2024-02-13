@@ -3,6 +3,7 @@ const express = require('express');
 const CreateUserController = require('./controllers/CreateUserController');
 const ControllerVerifyEmail = require('./controllers/ControllerVerifyEmail.js');
 const ControllerResetPassword = require('./controllers/ControllerResetPassword.js');
+const ControllerNewPassword = require('./controllers/ControllerNewPassword.js');
 
 const app = express();
 app.use(express.json());
@@ -18,6 +19,10 @@ app.post('/verify/:email', async (req, res) =>{
 
 app.post('/cod-reset', async (req, res) =>{
   await ControllerResetPassword(req, res)
+})
+
+app.post('/new-password-page', async (req, res) =>{
+  await ControllerNewPassword(req, res)
 })
   
 app.listen(3333, () => {
