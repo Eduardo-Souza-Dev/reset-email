@@ -1,8 +1,9 @@
 const CreateServicesNewPassword = require('../services/CreateServicesNewPassword')
 async function ControllerNewPassword(request,response){
-    const { id,cod_reset } = request.body;
+    const { id,password } = request.body;
 
-    const values = await CreateServicesNewPassword(id,cod_reset);
+    const values = await CreateServicesNewPassword(id,password);
+    console.log(values)
     try{
     let valuesMessage = JSON.parse(values);
 
@@ -13,6 +14,7 @@ async function ControllerNewPassword(request,response){
     }
 
     }catch(err){
+        console.log(err)
         return err
     }
 

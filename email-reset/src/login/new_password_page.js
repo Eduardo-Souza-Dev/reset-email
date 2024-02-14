@@ -4,33 +4,41 @@ import Form from 'react-bootstrap/Form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function NewPasswordPage() {
+  let navigate = useNavigate();
   let value = useLocation();
   let id_user_register = value.state.id_user_register;
 
   const [password, setPassword] = useState('');
   const [new_password, setNewPassword] = useState('');
+  const [btn,setBtn] = useState('');
 
+  useEffect(() =>{
+    setBtn(document.getElementById('btn_send'))
+  },[])
+
+  if(btn !== ''){
   if(password !== new_password || password === ''){
-   document.getElementById('btn_send').disabled = true;
-  }else{
-    document.getElementById('btn_send').disabled = false;
+    btn.disabled = true;
+   }else{
+     btn.disabled = false;
+   }
   }
-  
 
-//   let data = {
-//     id:id_user_register,
-//     password:`${value1}${value2}${value3}${value4}`
-//   }
+  
+  let data = {
+    id:id_user_register,
+    password:`${password}`
+  }
 
    function sendInfo(e){
     e.preventDefault()
-    fetch(`http://localhost:3333/cod-reset`,{
+    fetch(`http://localhost:3333/new-password`,{
       method:"POST",
       headers:{ "Content-type": "application/json; charset=UTF-8" },
-    //   body:JSON.stringify(data),
+      body:JSON.stringify(data),
       mode:'cors',
     })
     .then(response => response.json())
@@ -49,6 +57,10 @@ function NewPasswordPage() {
           theme: "dark",
           type: "success"
         })
+
+        setTimeout(() =>{
+          navigate('/login')
+          },1000)
       }
 
       if(data.message === "Erro na senha"){

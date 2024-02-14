@@ -21,7 +21,7 @@ app.post('/cod-reset', async (req, res) =>{
   await ControllerResetPassword(req, res)
 })
 
-app.post('/new-password-page', async (req, res) =>{
+app.post('/new-password', async (req, res) =>{
   await ControllerNewPassword(req, res)
 })
   

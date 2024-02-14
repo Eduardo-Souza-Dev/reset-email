@@ -14,7 +14,7 @@ async function CreateServicesNewPassword(id,password){
 
     let passwordHash = bcrypt.hashSync(password, salt)
 
-    let updateSql = `UPDATE r_user_register SET password  = ${passwordHash} WHERE id_user_register = ${id}`;
+    let updateSql = `UPDATE r_user_register SET password  = '${passwordHash}' WHERE id_user_register = ${id}`;
     const [results, fields] = await connection.promise().query(updateSql);
   
     if(results){
@@ -23,11 +23,12 @@ async function CreateServicesNewPassword(id,password){
         message: "Nova senha inserida com sucesso"
       }
 
-      return valuesOkay;
+      return JSON.stringify(valuesOkay);
     }
 
   }catch(err){
-    return valuesWrong;
+    console.log(err)
+    return JSON.stringify(valuesWrong);
   }
    
 }
