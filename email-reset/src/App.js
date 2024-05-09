@@ -12,7 +12,7 @@ import Register from './register';
 import ResetPage from './login/cod_page';
 import EmailPage from './login/email_page';
 import NewPasswordPage from './login/new_password_page';
-
+import SucessPage from './login/success_login';
 
 
 function App() {
@@ -39,6 +39,7 @@ function App() {
           <Route path="cod-page" element={<ResetPage />} />
           <Route path="email-reset-password" element={<EmailPage />} />
           <Route path="new-password-page" element={<NewPasswordPage />} />
+          <Route path="success-login" element={<SucessPage />} />
       </Routes>
     </BrowserRouter>
 
