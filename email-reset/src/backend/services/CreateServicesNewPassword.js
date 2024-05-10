@@ -14,8 +14,8 @@ async function CreateServicesNewPassword(id,password){
 
     let passwordHash = bcrypt.hashSync(password, salt)
 
-    let updateSql = `UPDATE r_user_register SET password  = '${passwordHash}' WHERE id_user_register = ${id}`;
-    const [results, fields] = await connection.promise().query(updateSql);
+    let updateSql = `UPDATE r_user_register SET password  = ? WHERE id_user_register = ?`;
+    const [results, fields] = await connection.promise().query(updateSql,[passwordHash,id]);
   
     if(results){
       //Retorna okay e nova senha com hash inserida ao banco

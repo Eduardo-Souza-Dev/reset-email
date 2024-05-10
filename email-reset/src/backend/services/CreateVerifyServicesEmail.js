@@ -58,9 +58,9 @@ while(i < 4){
 let codigoHash = bcrypt.hashSync(codigo, salt)
 
 
-let queryInsert = `UPDATE r_user_register SET cod_reset = '${codigoHash}' WHERE id_user_register = ${id} `
+let queryInsert = `UPDATE r_user_register SET cod_reset = ? WHERE id_user_register = ? `
 
-connection.query(queryInsert, (err, results) =>{
+connection.query(queryInsert, [codigoHash,id],(err, results) =>{
   //Chave que não deveria ficar exposta mas é só teste kk
   const resend = new Resend('re_2kpztcgT_FiHaCrNSuprhyTqpzv6rbX1w');
   if(results){

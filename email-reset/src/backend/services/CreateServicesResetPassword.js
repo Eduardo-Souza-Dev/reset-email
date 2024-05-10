@@ -12,8 +12,8 @@ async function CreateServiceResetPassword(id,cod){
        return JSON.stringify(valuesWrong);
     }
 
-    let selectSql = `SELECT id_user_register,cod_reset FROM r_user_register  WHERE id_user_register = ${id}`;
-    const [results, fields] = await connection.promise().query(selectSql);
+    let selectSql = `SELECT id_user_register,cod_reset FROM r_user_register  WHERE id_user_register = ?`;
+    const [results, fields] = await connection.promise().query(selectSql,[id]);
   
     if(results){
       //Compara valor do codigo e o valor do hash recebido no banco de dados

@@ -6,9 +6,8 @@ if(!email){
 }
 
 if(email !== null || email !== undefined){
-    let verificaEmail = `SELECT * FROM register WHERE email = '${email}'` 
-    connection.query(verificaEmail, (err, results)=>{
-        console.log("Erro aqui aqui: " + results)
+    let verificaEmail = `SELECT * FROM register WHERE email = ?` 
+    connection.query(verificaEmail,[email], (err, results)=>{
         return results
      
     }).on('error', function(err){

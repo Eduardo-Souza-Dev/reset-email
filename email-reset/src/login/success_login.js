@@ -9,7 +9,7 @@ function SucessPage() {
   return (
     
       <Form style={{width:'100%', justifyContent:'center',backgroundColor:'#6FCF40', textAlign:'center', 
-      height: '100%', border:'1px solid green',marginTop:'20%'}}>
+      height: '100%',marginTop:'20%'}}>
 
         <h1>Usuário Logado com sucesso!!</h1>
       <ToastContainer />
