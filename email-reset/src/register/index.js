@@ -11,6 +11,8 @@ function Register() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
+
+
   let data = {
     name: name,
     email: email,
@@ -20,6 +22,21 @@ function Register() {
 
    function sendInfo(e){
     e.preventDefault()
+
+    if(senha == '' || email == ''){
+      toast('Preencha todos os campos!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "dark",
+        type:"warning"
+      })
+      return;
+    }
     fetch(`http://localhost:3333/create/user`,{
       method:"POST",
       headers: {"Content-type": "application/json; charset=UTF-8"},

@@ -26,7 +26,7 @@ app.post('/new-password', async (req = Request, res = Response) =>{
   await ControllerNewPassword(req, res)
 })
 
-app.get('/verify/user', async (req = Request, res = Response) => {
+app.post('/verify/user', async (req = Request, res = Response) => {
   await ControllerVerifyUser(req, res);
 })
   

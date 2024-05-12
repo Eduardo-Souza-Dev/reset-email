@@ -1,5 +1,4 @@
 const CreateVerifyUser = require('../services/CreateVerifyUser');
-const connection = require('../server');
 
 
 async function ControllerVerifyUser(request,response){
@@ -11,7 +10,9 @@ async function ControllerVerifyUser(request,response){
          response.status(400).json({message: 'Usuário logado com sucesso'})//Retorna que o login foi feito com sucesso
     }else if(values == "Senha correta!"){
          response.status(200).json({message: 'Erro ao logar'});//Retorna erro no login
-    }
+    }else if(values == "Usuario não encontrado"){
+     response.status(200).json({message: 'Usuario não encontrado'});//Retorna erro no login
+}
 
 }
 

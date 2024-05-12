@@ -16,18 +16,6 @@ import SucessPage from './login/success_login';
 
 
 function App() {
-  let [values, setValues] = useState('')
-
-  useEffect(() => {
-    fetch('http://localhost:3333/api/dados')
-      .then(response => response.json())
-      .then(data => {
-        setValues(data);
-      })
-      .catch(error => console.error('Erro na requisição:', error));
-    }, []);
-
-
 
   return (
     <div className="App">
