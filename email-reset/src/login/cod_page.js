@@ -62,6 +62,20 @@ function ResetPage() {
         })
       }
 
+      if(data.message === "Email not found!"){
+        toast('Email não cadastrado na base de dados!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "dark",
+          type: "error"
+        })
+      }
+
       if(data.message === "Código vazio"){
         toast('Código vazio', {
           position: "top-right",

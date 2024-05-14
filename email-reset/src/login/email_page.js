@@ -25,7 +25,7 @@ function EmailPage(){
       })
       .then(response => response.json())
       .then(data => {
-          if(data && data.message !== "Erro ao enviar código"){
+          if(data && data.message !== "Email não encontrado!"){
           toast('Código enviado ao seu e-mail!', {
               position: "top-right",
               autoClose: 5000,
@@ -43,6 +43,19 @@ function EmailPage(){
           
         }
 
+          if(data.message === "Email não encontrado!"){
+            toast('Email não encontrado em nossa base de dados!', {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: false,
+              progress: undefined,
+              theme: "dark",
+              type: "warning"
+          });
+          }
           if(data.message === "Erro ao enviar código"){
             toast('Erro ao enviar código', {
               position: "top-right",

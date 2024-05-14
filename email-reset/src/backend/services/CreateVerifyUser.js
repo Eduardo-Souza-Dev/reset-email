@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 require('dotenv').config()
 
 
-async function CreateVerifyServicesEmail(email,senha){
+async function CreateVerifyUser(email,senha){
     try{
     if(email === ''){
         throw new Error("E-mail vazio!");
@@ -20,15 +20,17 @@ async function CreateVerifyServicesEmail(email,senha){
         return message = "Usuario não encontrado";
      }else{
         
-        let userSenha = results[0].senha;
+        let userSenha = results[0].password;
+
         let resultSenha = await bcrypt.compare(senha,userSenha);
 
         //Esse if basicamente verifica se a senha digitada é a compátivel
-        if(resultSenha == true){
+        if(resultSenha === false){
             message = "Senha incorreta!";
         }else{
             message = "Senha correta!";
         }
+    
         return message; 
      } 
       
@@ -39,4 +41,4 @@ async function CreateVerifyServicesEmail(email,senha){
 
 }
 
-module.exports = CreateVerifyServicesEmail
+module.exports = CreateVerifyUser

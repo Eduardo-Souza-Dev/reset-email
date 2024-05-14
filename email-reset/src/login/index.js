@@ -3,17 +3,16 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
-import { toast } from 'react-toastify';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   //Pega os valores digitados nos inputs
   let [email, setEmail] = useState('');
   let [senha, setSenha] = useState('');
-
-  let data = {
-    email: email,
-    senha: senha
-  }
+  let navigate = useNavigate();
 
 
   //Chamada de uma função assincrona dentro do botão de enviar os dados, que faz a verificação de login do usuário
@@ -36,8 +35,12 @@ function Login() {
     }
 
     
+  let data = {
+    email: email,
+    senha: senha
+  }
 
-    fetch(`http://localhost:3333/verify/user`, {
+    fetch(`http://localhost:3333/user`, {
       method: 'POST',
       headers: {"Content-type": "application/json; charset=UTF-8"},
       body: JSON.stringify(data),
@@ -57,10 +60,15 @@ function Login() {
          theme: "dark",
          type:"success"
        })
+
+
+       setTimeout(() =>{
+        navigate('/success-login')
+        },2000)
      }
 
      if(data.message == "Senha incorreta!"){    
-       toast('Erro ao logar!', {
+       toast('Usuário/Login incorreto!', {
          position: "top-right",
          autoClose: 5000,
          hideProgressBar: false,
@@ -88,7 +96,7 @@ function Login() {
     }
    })
    .catch((error) =>{
-     toast('Erro ao cadastrar!', {
+     toast('Erro ao logar!', {
        position: "top-right",
        autoClose: 5000,
        hideProgressBar: false,
@@ -139,9 +147,11 @@ function Login() {
       </Form.Group>
       
  
-      <Button onClick={(e) =>ConfirmLogin(e)} variant="primary" type="submit" >
+      <Button onClick={ConfirmLogin} variant="primary" type="submit" >
         Enviar
       </Button>
+
+      <ToastContainer />
 
     </Form>
 
