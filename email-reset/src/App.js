@@ -6,13 +6,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 //pages
-import Home from './home';
-import Login from './login';
-import Register from './register';
-import ResetPage from './login/cod_page';
-import EmailPage from './login/email_page';
-import NewPasswordPage from './login/new_password_page';
-import SucessPage from './login/success_login';
+import Home from './home'
+import Login from './frontend/login';
+import Register from './frontend/register';
+import ResetPage from './frontend/login/cod_page';
+import EmailPage from './frontend/login/email_page';
+import NewPasswordPage from './frontend/login/new_password_page';
+import SucessPage from './frontend/login/success_login';
 
 
 function App() {
