@@ -5,19 +5,26 @@ ARG NODE_VERSION=20.11.0
 # Base stage
 FROM node:${NODE_VERSION}-alpine as base
 
-WORKDIR /frontend
+# Define o diretório de trabalho como raiz do projeto
+WORKDIR /email-reset
+
+# Deps stage
+FROM base as deps
 
 # Copia apenas o arquivo package.json e package-lock.json
 COPY package.json package-lock.json ./
 
 # Instala as dependências
-RUN npm run build
+RUN npm install
+
+# Build stage
+FROM deps as build
 
 # Copia todo o restante dos arquivos
-COPY . .
+COPY backend ./backend
 
 # Expor a porta que a aplicação utiliza
-EXPOSE 3000
+EXPOSE 3333
 
 # Executa a aplicação
-CMD ["npm", "start"]
+CMD ["node", "src/backend/routes.js"]
