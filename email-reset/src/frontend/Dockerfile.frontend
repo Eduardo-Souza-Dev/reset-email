@@ -6,16 +6,22 @@ FROM node:20.11.0-alpine
 WORKDIR /email-reset
 
 # Copia apenas o arquivo package.json e package-lock.json
-COPY ["package*.json","./"]
+COPY ../../../package.json ../../../package-lock.json ./
 
 # Instala as dependências
-RUN npm run build
+RUN npm install
 
 # Copia todo o restante dos arquivos
 COPY . .
 
-# Expor a porta que a aplicação utiliza
+# Construa a aplicação
+RUN npm run build
+
+# Exponha a porta que a aplicação utiliza
 EXPOSE 3000
 
-# Executa a aplicação
-CMD ["npm", "start"]
+# Instale o servidor HTTP para servir a aplicação React
+RUN npm install -g serve
+
+# Comando para servir a aplicação
+CMD ["serve", "-s", "build", "-l", "3000"]

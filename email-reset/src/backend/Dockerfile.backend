@@ -12,7 +12,7 @@ WORKDIR /email-reset
 FROM base as deps
 
 # Copia apenas o arquivo package.json e package-lock.json
-COPY package.json package-lock.json ./
+COPY ../../../package.json ../../../package-lock.json ./
 
 # Instala as dependências
 RUN npm install
@@ -21,7 +21,7 @@ RUN npm install
 FROM deps as build
 
 # Copia todo o restante dos arquivos
-COPY backend ./backend
+COPY . .
 
 # Expor a porta que a aplicação utiliza
 EXPOSE 3333
