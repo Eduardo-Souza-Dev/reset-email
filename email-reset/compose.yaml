@@ -9,7 +9,7 @@ services:
       - .:/app
       - /app/node_modules  # Ignore node_modules do host
     ports:
-      - "3333:3333"  # Altere para a porta correta que o backend está escutando
+      - "3333:3333"
     environment:
       - DB_HOST=db
       - DB_USER=root

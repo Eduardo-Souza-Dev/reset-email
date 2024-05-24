@@ -27,4 +27,4 @@ COPY . .
 EXPOSE 3333
 
 # Executa a aplicação
-CMD ["node", "src/backend/routes.js"]
+CMD ["./wait-for-it.sh", "db:3306", "--", "npm", "start"]
