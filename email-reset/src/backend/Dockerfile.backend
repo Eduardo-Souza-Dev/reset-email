@@ -20,6 +20,11 @@ RUN npm install
 # Build stage
 FROM deps as build
 
+# Copia o script wait-for-it.sh
+COPY wait-for-it.sh /usr/local/bin/wait-for-it.sh
+RUN chmod +x /usr/local/bin/wait-for-it.sh
+
+
 # Copia todo o restante dos arquivos
 COPY . .
 
@@ -27,4 +32,4 @@ COPY . .
 EXPOSE 3333
 
 # Executa a aplicação
-CMD ["./wait-for-it.sh", "db:3306", "--", "npm", "start"]
+CMD ["npm", "start"]
