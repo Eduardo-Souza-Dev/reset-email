@@ -22,7 +22,7 @@ usage()
 wait_for()
 {
   if [[ "${TIMEOUT}" -gt 0 ]]; then
-    echo "Waiting for ${HOST}:${PORT}..."
+    echo "Waiting forrr ${HOST}:${PORT}..."
   fi
 
   start_ts=$(date +%s)

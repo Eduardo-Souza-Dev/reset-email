@@ -21,12 +21,12 @@ RUN npm install
 FROM deps as build
 
 # Copia o script wait-for-it.sh
-COPY wait-for-it.sh /usr/local/bin/wait-for-it.sh
-RUN chmod +x /usr/local/bin/wait-for-it.sh
+# COPY wait-for-it.sh /usr/local/bin/wait-for-it.sh
+# RUN chmod +x /usr/local/bin/wait-for-it.sh
 
 
 # Copia todo o restante dos arquivos
-COPY . .
+COPY src/backend/ ./
 
 # Expor a porta que a aplicação utiliza
 EXPOSE 3333

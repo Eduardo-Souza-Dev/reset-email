@@ -10,7 +10,6 @@ services:
       - /app/node_modules
     ports:
       - "3333:3333"
-    command: sh -c 'wait-for-it.sh db:3306 -- node server.js'
     environment:
       - DB_HOST=db
       - DB_USER=root
@@ -29,7 +28,6 @@ services:
   db: #Banco de dados
     image: mysql:8.0
     hostname: db
-    command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 1234
