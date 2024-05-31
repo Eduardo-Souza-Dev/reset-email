@@ -6,7 +6,7 @@ ARG NODE_VERSION=20.11.0
 FROM node:${NODE_VERSION}-alpine as base
 
 # Define o diretório de trabalho como raiz do projeto
-WORKDIR /email-reset
+WORKDIR /email-reset/src/backend
 
 # Deps stage
 FROM base as deps
@@ -26,10 +26,10 @@ FROM deps as build
 
 
 # Copia todo o restante dos arquivos
-COPY src/backend/ ./
+COPY . .
 
 # Expor a porta que a aplicação utiliza
 EXPOSE 3333
 
 # Executa a aplicação
-CMD ["npm", "start"]
+CMD ["npm", "run", "runNodemon"]

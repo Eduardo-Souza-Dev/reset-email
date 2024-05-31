@@ -10,6 +10,7 @@ services:
       - /app/node_modules
     ports:
       - "3333:3333"
+    command: npm run runNodemon
     environment:
       - DB_HOST=db
       - DB_USER=root
