@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  backend: #Backend
+  backend: # Backend
     build:
       context: .
       dockerfile: src/backend/Dockerfile.backend
@@ -19,14 +19,14 @@ services:
     depends_on:
       - db
 
-  frontend: #Frontend
+  frontend: # Frontend
     build:
       context: .
       dockerfile: src/frontend/Dockerfile.frontend
     ports:
       - "3000:3000"
 
-  db: #Banco de dados
+  db: # Banco de dados
     image: mysql:8.0
     hostname: db
     restart: always
@@ -34,9 +34,10 @@ services:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: reset_email
     ports:
-      - "3307:3306"
+      - "3307:3307"
     volumes:
       - db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p1234"]
       interval: 10s

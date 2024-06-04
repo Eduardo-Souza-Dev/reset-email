@@ -29,6 +29,10 @@ app.post('/new-password', async (req = Request, res = Response) =>{
 app.post('/user', async (req = Request, res = Response) => {
   await ControllerVerifyUser(req, res);
 })
+
+app.get('/', (req,res) => {
+  return res.send('<h1>Servidor backend rodando!!</h1>');
+});
   
 app.listen(3333, () => {
   console.log('Servidor backend rodando na porta 3333');
