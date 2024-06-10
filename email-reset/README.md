@@ -38,3 +38,31 @@ cd reset-email
 ## Utilização com docker
 
 1. Aqui basta executar na pasta email-reset o comando ```docker-compose up```, ele criará todas as imagens e relacionar o banco automáticamente
+
+## Instruções de criação do banco
+
+Para o banco execute essas querys para ficar de acordo com o que está no back e  front-end:
+
+- Criação de db
+
+```
+CREATE DATABASE IF NOT EXISTS reset_email;
+USE reset_email;
+```
+
+- Criação de tabela
+
+```
+CREATE TABLE IF NOT EXISTS r_user_register (
+    id_user_register INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    password VARCHAR(255) NOT NULL,
+    cod_reset VARCHAR(255),
+    email VARCHAR(255) NOT NULL,
+    date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT check_name_cod_reset CHECK (name IS NOT NULL OR cod_reset IS NOT NULL)
+);
+```
+
+**Para criar para o docker basta acessar o phpmyadmin.**
+**E para criar localmente basta acessar o workbench ou qualquer ferramente de banco de dados e executar o comando acima.**
