@@ -6,7 +6,7 @@ async function CreateUserController(request,response){
 
     const {nome,email,senha} = request.body
     let values =  await CreateUserServices(nome,email,senha);
-
+    
     if(values.code == "ER_DUP_ENTRY"){
          response.status(400).json({message: 'Email já cadastrado'})//Retorna erro caso tenha email já cadastrado
     }else if(values == "Cadastrado"){

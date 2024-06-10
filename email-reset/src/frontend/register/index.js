@@ -4,12 +4,14 @@ import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 
 function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  let navigate = useNavigate();
 
 
 
@@ -57,6 +59,10 @@ function Register() {
           theme: "dark",
           type:"success"
         })
+
+        setTimeout(() =>{
+          navigate('/login')
+          },2000)
       }
 
       if(data.message == "Email já cadastrado"){    
