@@ -12,7 +12,7 @@ Este repositório demonstra a implementação de um sistema simples de autentica
 
 ## Pré-requisitos
 
-Antes de executar a aplicação, certifique-se de ter os seguintes itens instalados:
+Antes de executar a aplicação caso for usar de maneira local (exceto o Docker), certifique-se de ter os seguintes itens instalados:
 
 - [Node.js](https://nodejs.org/)
 - [Docker](https://www.docker.com/get-started)
